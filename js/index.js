@@ -1,6 +1,7 @@
 const calculatorButtonNumber = document.querySelectorAll(".number"); // Получения id кнопок чисел.
 const calculatorButtonOperation = document.querySelectorAll(".operation"); // Получает id кнопок операторов.
 const calculatorDisplay = document.querySelector("#input-area"); // Получения id экрана.
+const calculatorDisplayStory = document.querySelector("#input-story") //Экран предыдущего ответа
 const calculatorDisplayClear = document.querySelector("#Clear"); // Кнопка очистки.
 const calculatorButtonBack = document.querySelector("#Back"); // Кнопака удаления одного элемента.
 const calculatorConclusion = document.querySelector("#Conclusion"); //Кнопка равно.
@@ -11,6 +12,7 @@ calculatorButtonOperation.forEach((element) => {element.addEventListener("click"
 
 calculatorDisplayClear.addEventListener("click", () => {
     calculatorDisplay.innerHTML = "";
+    calculatorDisplayStory.innerHTML = "";
     performedOperations = [];
 })
 
@@ -56,6 +58,7 @@ calculatorConclusion.addEventListener("click", () => {
     }
 
     calculatorDisplay.innerHTML = result;
+    calculatorDisplayStory.innerHTML = result
     performedOperations = [];
     performedOperations.push(result);
 })
