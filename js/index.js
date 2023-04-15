@@ -1,40 +1,31 @@
-let calculatorButton = document.getElementById("button-area"); // Получения id кнопок.
-let calculatorDisplay = document.getElementById("input-area"); // Получения id экрана.
-let performingAnOperation = [];
-let numbers = ["0","1","2","3","4","5","6","7","8","9", "."]
-let operation = ["+", "-", "*", "/"];
+let calculatorButtonNumber = document.querySelectorAll(".number"); // Получения id кнопок чисел.
+let calculatorButtonOperation = document.querySelectorAll(".operation"); // Получает id кнопок операторов.
+let calculatorDisplay = document.querySelector("#input-area"); // Получения id экрана.
+let calculatorDisplayClear = document.querySelector("#Clear"); // Кнопка очистки.
+let calculatorButtonBack = document.querySelector("#Back"); // Кнопака удаления одного элемента.
+let performedOperations = [];
 
+Array.from(calculatorButtonNumber).forEach((element) => {element.addEventListener("click", clickNumber)})
+Array.from(calculatorButtonOperation).forEach((element) => {element.addEventListener("click", clickOperation)})
 
-
-calculatorButton.addEventListener("click", e => {
-    switch(e.target.innerText) {
-        case "C":
-            performingAnOperation = [];
-            calculatorDisplay.innerHTML = "";
-        break;
-
-        case "back": 
-            performingAnOperation.pop();
-            calculatorDisplay.innerHTML = performingAnOperation.join("");
-        break;
-
-        case "=":
-            let value = "";
-            let value2 = "";
-            
-            for(let i = 0; i < performingAnOperation.length; i++) {
-                debugger
-                if (operation.indexOf(performingAnOperation[i]) == -1) {
-                    value += performingAnOperation[i];
-                }
-            }
-
-            calculatorDisplay.innerHTML += value;
-        break;
-
-        default:
-            performingAnOperation.push(e.target.innerText)
-            calculatorDisplay.innerHTML += e.target.innerText
-        break;
-    }
+calculatorDisplayClear.addEventListener("click", () => {
+    calculatorDisplay.innerHTML = "";
+    performedOperations = [];
 })
+
+calculatorButtonBack.addEventListener("click", () => {
+    performedOperations.pop();
+    calculatorDisplay.innerHTML = performedOperations.join("");
+})
+
+function clickNumber() {
+    calculatorDisplay.innerHTML += this.id;
+    performedOperations.push(this.id)
+}
+
+function clickOperation() {
+    if(performedOperations.length != 0 && /[0-9]$/.test(performedOperations[performedOperations.length-1])){
+        calculatorDisplay.innerHTML += this.id;
+        performedOperations.push(this.id)
+    }
+}

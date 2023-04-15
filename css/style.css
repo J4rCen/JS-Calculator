@@ -28,7 +28,8 @@ body {
 
 #display-calculator {
     position: relative;
-    background-color: black;
+    background: rgb(48,48,48);
+    background: linear-gradient(0deg, rgba(48,48,48,1) 0%, rgba(70,70,70,1) 50%, rgba(48,48,48,1) 100%);
     width: 90%;
     height: 80px;
     margin: 0 auto;
