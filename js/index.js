@@ -21,13 +21,43 @@ calculatorButtonBack.addEventListener("click", () => {
 
 calculatorConclusion.addEventListener("click", () => {
     let str = "";
-    str += performedOperations.map(el => {
-        if(el == /[0-9]+/g) {
-            el.join("");
+    let arr = [];
+    let result = 0;
+    
+    for(let a in performedOperations) {
+        if(!(/\/|\+|\-|\*/.test(performedOperations[a]))) {
+            str += performedOperations[a]
+        } else {
+            arr.push(str)
+            arr.push(performedOperations[a])
+            str = "";
         }
-    })
+    }
 
-    console.log(str);
+    arr.push(str)
+
+    for(let i = 0; i < arr.length; i++) {
+        switch(arr[i]) {
+            case "+":
+                result = +arr[i-1] + +arr[i+1];
+                break;
+            case "-":
+                result = +arr[i-1] - +arr[i+1];
+                break;
+
+            case "/":
+                result = +arr[i-1] / +arr[i+1];
+                break;
+
+            case "*":
+                result = +arr[i-1] * +arr[i+1];
+                break;
+        }
+    }
+
+    calculatorDisplay.innerHTML = result;
+    performedOperations = [];
+    performedOperations.push(result);
 })
 
 function clickNumber() {
