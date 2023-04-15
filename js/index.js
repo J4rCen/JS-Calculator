@@ -1,13 +1,13 @@
-let calculatorButtonNumber = document.querySelectorAll(".number"); // Получения id кнопок чисел.
-let calculatorButtonOperation = document.querySelectorAll(".operation"); // Получает id кнопок операторов.
-let calculatorDisplay = document.querySelector("#input-area"); // Получения id экрана.
-let calculatorDisplayClear = document.querySelector("#Clear"); // Кнопка очистки.
-let calculatorButtonBack = document.querySelector("#Back"); // Кнопака удаления одного элемента.
-let calculatorConclusion = document.querySelector("#Conclusion"); //Кнопка равно.
+const calculatorButtonNumber = document.querySelectorAll(".number"); // Получения id кнопок чисел.
+const calculatorButtonOperation = document.querySelectorAll(".operation"); // Получает id кнопок операторов.
+const calculatorDisplay = document.querySelector("#input-area"); // Получения id экрана.
+const calculatorDisplayClear = document.querySelector("#Clear"); // Кнопка очистки.
+const calculatorButtonBack = document.querySelector("#Back"); // Кнопака удаления одного элемента.
+const calculatorConclusion = document.querySelector("#Conclusion"); //Кнопка равно.
 let performedOperations = [];
 
-Array.from(calculatorButtonNumber).forEach((element) => {element.addEventListener("click", clickNumber)})
-Array.from(calculatorButtonOperation).forEach((element) => {element.addEventListener("click", clickOperation)})
+calculatorButtonNumber.forEach((element) => {element.addEventListener("click", clickNumber)})
+calculatorButtonOperation.forEach((element) => {element.addEventListener("click", clickOperation)})
 
 calculatorDisplayClear.addEventListener("click", () => {
     calculatorDisplay.innerHTML = "";
