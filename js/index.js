@@ -3,6 +3,7 @@ let calculatorButtonOperation = document.querySelectorAll(".operation"); // По
 let calculatorDisplay = document.querySelector("#input-area"); // Получения id экрана.
 let calculatorDisplayClear = document.querySelector("#Clear"); // Кнопка очистки.
 let calculatorButtonBack = document.querySelector("#Back"); // Кнопака удаления одного элемента.
+let calculatorConclusion = document.querySelector("#Conclusion"); //Кнопка равно.
 let performedOperations = [];
 
 Array.from(calculatorButtonNumber).forEach((element) => {element.addEventListener("click", clickNumber)})
@@ -18,13 +19,24 @@ calculatorButtonBack.addEventListener("click", () => {
     calculatorDisplay.innerHTML = performedOperations.join("");
 })
 
+calculatorConclusion.addEventListener("click", () => {
+    let str = "";
+    str += performedOperations.map(el => {
+        if(el == /[0-9]+/g) {
+            el.join("");
+        }
+    })
+
+    console.log(str);
+})
+
 function clickNumber() {
-    calculatorDisplay.innerHTML += this.id;
     performedOperations.push(this.id)
+    calculatorDisplay.innerHTML += this.id;
 }
 
 function clickOperation() {
-    if(performedOperations.length != 0 && /[0-9]$/.test(performedOperations[performedOperations.length-1])){
+    if(/[0-9]$/.test(performedOperations[performedOperations.length-1])){
         calculatorDisplay.innerHTML += this.id;
         performedOperations.push(this.id)
     }
